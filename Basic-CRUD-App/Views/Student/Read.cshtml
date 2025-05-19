@@ -1,0 +1,35 @@
+﻿@model List<Student>
+
+@{
+    ViewData["Title"] = "Student List";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Student Profiles</h2>
+        <a asp-controller="Student" asp-action="Create" class="btn btn-primary">Add Another</a>
+    </div>
+
+    <div class="row">
+        @foreach (var student in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@student.Name</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@student.Email</h6>
+                        <p class="card-text">@student.Description</p>
+
+                        <h6>Programming Languages:</h6>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var lang in student.ProgrammingLanguages)
+                            {
+                                <li class="list-group-item">@lang</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

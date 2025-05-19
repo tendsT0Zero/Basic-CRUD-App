@@ -1,0 +1,60 @@
+﻿@model Basic_CRUD_App.Models.Student
+@{
+    ViewData["Title"] = "Add New Student";
+    var allLanguages = new List<string> { "C#", "JavaScript", "Python", "R", "SQL", "HTML", "CSS" };
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body p-5">
+                    <h2 class="mb-4 text-primary">✨ Add New Student</h2>
+
+                    <form asp-action="Create" method="post">
+                        <!-- Name -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                            <label asp-for="Name"></label>
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="Email" class="form-control" placeholder="Enter email" />
+                            <label asp-for="Email"></label>
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-floating mb-4">
+                            <textarea asp-for="Description" class="form-control" placeholder="Describe the student" style="height: 100px;"></textarea>
+                            <label asp-for="Description"></label>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Programming Languages (multi-select) -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Programming Languages Known</label>
+                            <select asp-for="ProgrammingLanguages" class="form-select" multiple size="5">
+                                @foreach (var lang in allLanguages)
+                                {
+                                    <option value="@lang">@lang</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ProgrammingLanguages" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Read" class="btn btn-outline-secondary rounded-pill px-4">Cancel</a>
+                            <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">Save Student</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
